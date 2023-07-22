@@ -1,0 +1,36 @@
+@use "../../styles/_mixins" as *;
+@use "../../styles/_variables" as *;
+
+.hero {
+    color: white;
+    background: linear-gradient(35deg, $orange, $pink);
+    padding: 4rem 1rem;
+    @include tablet{
+        padding: 6rem 7%;
+    }
+    @include desktop{
+        padding: 8rem 15%;
+    }
+    &__icon {
+        width: 35px;
+        @include tablet{
+            width: 40px;
+        }
+    }
+    &__title {
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        @include tablet{
+            font-size: 1.7rem;
+        }
+    }
+    &__subtitle{
+        font-weight: 500;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        @include tablet{
+            font-size: 1.1rem;
+        }
+    };
+}
