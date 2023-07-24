@@ -1,0 +1,38 @@
+@use "../../styles/_mixins" as *;
+@use "../../styles/_variables" as *;
+
+.card {
+    background-color: $sand;
+    padding: 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    line-height: 1.4rem;
+    @include tablet{
+        flex-grow: 1;
+    }
+    &__title {
+        color: $pink;
+    }
+    &__subtitle {
+        font-size: 0.9rem;
+    }
+    &__group {
+        margin: 1rem 0 1.3rem 0;
+    }
+    &__container {
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__detail {
+        color: $pink;
+        border: solid 1.5px $pink;
+        padding: 0.1rem 0.5rem;
+        border-radius: 10px;
+        &:hover {
+            color: orange;
+            border: solid 1.5px $orange;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+    }
+}

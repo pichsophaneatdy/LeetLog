@@ -1,13 +1,21 @@
 import React from 'react';
 import "./LeetcodeCard.scss";
-const LeetcodeCard = ({code, question, date, difficulty}) => {
+const LeetcodeCard = ({card}) => {
+    const {code, question, date, difficulty} = card;
+    const newDate = new Date(date).toString().split(" ").slice(1,4).join("/");
+    
     return (
         <div className="card">
-            <p className="card__title">{code}</p>
+            <p className="card__title">#{code}</p>
             <p className="card__title">{question}</p>
-            <p className="card__subtitle">{difficulty}</p>
-            <p className="card__subtitle">{date}</p>
-            <button className="card__detail">Detail</button>
+            <div className="card__group">
+                <p className="card__subtitle">Difficulty: {difficulty}</p>
+                <p className="card__subtitle">Date: {newDate}</p>
+            </div>
+            <div className="card__container">
+                <button className="card__detail">Learn more</button>
+            </div>
+            
         </div>
     )
 }

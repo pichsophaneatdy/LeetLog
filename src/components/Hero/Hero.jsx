@@ -1,12 +1,12 @@
 import React from 'react'
 import code from "../../assets/code.png";
 import "./Hero.scss";
-const Hero = () => {
+const Hero = ({title, subtitle}) => {
     return (
         <div className="hero">
             <img src={code} alt="" className="hero__icon" />
-            <p className="hero__title">Welcome to LeetLog!</p>
-            <p className="hero__subtitle">Did you do a lot of leetcode questions? We will help you keeping track of it!</p>
+            {title && <p className="hero__title">{title}</p>}
+            {subtitle && <p className="hero__subtitle">{subtitle}</p>}
         </div>
     )
 }
