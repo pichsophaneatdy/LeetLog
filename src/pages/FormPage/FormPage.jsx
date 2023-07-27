@@ -4,6 +4,7 @@ import Form from '../../components/Form/Form';
 import {useState} from "react";
 import {useMutation} from "@apollo/client";
 import { addNewQuestionMutation } from '../../queries/queries';
+import { getAllLeetcode } from '../../queries/queries';
 import { useNavigate } from 'react-router-dom';
 
 const FormPage = () => {
@@ -27,7 +28,11 @@ const FormPage = () => {
     }
 
     // GraphQL
-    const [addLeetcode, {data, loading, error}] = useMutation(addNewQuestionMutation);
+    const [addLeetcode, {data, loading, error}] = useMutation(addNewQuestionMutation, {
+        refetchQueries: [
+            {query: getAllLeetcode}
+        ]
+    });
 
     const navigate = useNavigate();
     const handleSubmit = (e) => {
