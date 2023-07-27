@@ -1,0 +1,12 @@
+@use "../../styles/_mixins" as *;
+@use "../../styles/_variables" as *;
+
+.register {
+    padding: 1rem;
+    &__title {
+        margin: 2rem 0;
+    }
+    &__form {
+        
+    }
+}
