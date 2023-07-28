@@ -1,11 +1,13 @@
 import React from 'react';
 import Hero from '../../components/Hero/Hero';
 import Form from '../../components/Form/Form';
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import {auth} from "../../firebase";
 import {useMutation} from "@apollo/client";
 import { addNewQuestionMutation } from '../../queries/queries';
 import { getAllLeetcode } from '../../queries/queries';
 import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const FormPage = () => {
     const [code, setCode] = useState();
@@ -59,6 +61,17 @@ const FormPage = () => {
             }, 2500)
         })
     } 
+        // useEffect 
+        useEffect(() => {
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                const uid = user.uid;
+                console.log("uid", uid)
+                } else {
+                    navigate("/");
+                }
+                })
+        }, [])
     return (
         <div className="formPage">
             <Hero title="Keep track of your leetcode questions!"/>

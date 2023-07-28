@@ -4,8 +4,12 @@ import menu from "../../assets/hamburger_menu.png";
 import { Link } from 'react-router-dom';
 import closeBtn from "../../assets/close.png";
 import {motion} from "framer-motion";
+import {auth} from "../../firebase";
+import {signOut} from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({isMobileHeaderOpen, setIsMobileHeaderOpen}) => {
+    const navigate = useNavigate();
     // menu variants
     const variants = {
         open: { opacity: 1, x: 0 ,
@@ -17,6 +21,14 @@ const Header = ({isMobileHeaderOpen, setIsMobileHeaderOpen}) => {
             stiffness: 20,
             duration: 0.5
         } },
+    }
+    // Sign Out Function
+    const handleSignout = () => {
+        signOut(auth).then(() => {
+            navigate("/");
+        }).catch((error) => {
+            console.log(error);
+        })
     }
     return (
         <>
@@ -42,6 +54,16 @@ const Header = ({isMobileHeaderOpen, setIsMobileHeaderOpen}) => {
                             <Link onClick={()=> setIsMobileHeaderOpen(false)} to="/addNewLeetcode" className="header__mobile__link">
                                 <p className="header__mobile__text">02</p>
                                 <p className="header__mobile__text">Add new leetcode</p>
+                            </Link>
+                            <Link onClick={()=> {
+                                    setIsMobileHeaderOpen(false);
+                                    handleSignout();
+                                    }}
+                                    to="/addNewLeetcode" 
+                                    className="header__mobile__link"
+                            >
+                                <p className="header__mobile__text">03</p>
+                                <p className="header__mobile__text">Sign Out</p>
                             </Link>
                         </nav>
                     </motion.header>

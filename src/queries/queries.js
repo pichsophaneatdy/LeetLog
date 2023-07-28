@@ -3,6 +3,7 @@ import {gql} from "@apollo/client";
 const getAllLeetcode = gql`
     {
         leetcodes{
+            id
             code
             question
             difficulty

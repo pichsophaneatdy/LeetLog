@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import {auth} from "../../firebase";
 import Hero from '../../components/Hero/Hero';
@@ -18,7 +18,7 @@ const Homepage = () => {
                 const uid = user.uid;
                 console.log("uid", uid)
             } else {
-                console.log("user is logged out")
+                navigate("/");
             }
         });
     }, [])
@@ -30,7 +30,7 @@ const Homepage = () => {
                 {error && <p>Error...</p>}
                 {
                     data?.leetcodes?.map((question) => {
-                        return <LeetcodeCard key={question._id} card={question} />
+                        return <LeetcodeCard key={question.id} card={question} />
                     })
                 }
             </div>

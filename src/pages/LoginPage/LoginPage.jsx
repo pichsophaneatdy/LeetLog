@@ -15,13 +15,13 @@ const LoginPage = () => {
         signInWithEmailAndPassword(auth, email, pwd)
             .then((userCredential) => {
                 const user = userCredential.user;
-                navigate("/");
-                console.log(user);
+                navigate("/home");
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
+                // Display error on the form and allow user to sign in again
             });
         
     }
