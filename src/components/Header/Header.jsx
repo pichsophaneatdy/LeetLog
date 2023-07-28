@@ -6,10 +6,12 @@ import closeBtn from "../../assets/close.png";
 import {motion} from "framer-motion";
 import {auth} from "../../firebase";
 import {signOut} from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = ({isMobileHeaderOpen, setIsMobileHeaderOpen}) => {
     const navigate = useNavigate();
+    const {pathname} = useLocation();
+
     // menu variants
     const variants = {
         open: { opacity: 1, x: 0 ,
@@ -47,43 +49,96 @@ const Header = ({isMobileHeaderOpen, setIsMobileHeaderOpen}) => {
                             className="header__mobile__icon" 
                             alt="Cross Icon"/>
                         <nav className="header__mobile__nav">
-                            <Link onClick={()=> setIsMobileHeaderOpen(false)} to="/" className="header__mobile__link">
-                                <p className="header__mobile__text">01</p>
-                                <p className="header__mobile__text">Leetcode Archives</p>
-                            </Link>
-                            <Link onClick={()=> setIsMobileHeaderOpen(false)} to="/addNewLeetcode" className="header__mobile__link">
-                                <p className="header__mobile__text">02</p>
-                                <p className="header__mobile__text">Add new leetcode</p>
-                            </Link>
-                            <Link onClick={()=> {
-                                    setIsMobileHeaderOpen(false);
-                                    handleSignout();
-                                    }}
-                                    to="/addNewLeetcode" 
-                                    className="header__mobile__link"
-                            >
-                                <p className="header__mobile__text">03</p>
-                                <p className="header__mobile__text">Sign Out</p>
-                            </Link>
+                            {
+                                (pathname === "/" || pathname === "/register") ? (
+                                    <>
+                                        <Link onClick={()=> setIsMobileHeaderOpen(false)} to="/" className="header__mobile__link">
+                                            <p className="header__mobile__text">01</p>
+                                            <p className="header__mobile__text">Login</p>
+                                        </Link>
+                                        <Link onClick={()=> setIsMobileHeaderOpen(false)} to="/register" className="header__mobile__link">
+                                            <p className="header__mobile__text">02</p>
+                                            <p className="header__mobile__text">Register</p>
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link onClick={()=> setIsMobileHeaderOpen(false)} to="/home" className="header__mobile__link">
+                                            <p className="header__mobile__text">01</p>
+                                            <p className="header__mobile__text">Leetcode Archives</p>
+                                        </Link>
+                                        <Link onClick={()=> setIsMobileHeaderOpen(false)} to="/addNewLeetcode" className="header__mobile__link">
+                                            <p className="header__mobile__text">02</p>
+                                            <p className="header__mobile__text">Add new leetcode</p>
+                                        </Link>
+                                        <Link onClick={()=> {
+                                                setIsMobileHeaderOpen(false);
+                                                handleSignout();
+                                                }}
+                                                to="/addNewLeetcode" 
+                                                className="header__mobile__link"
+                                        >
+                                            <p className="header__mobile__text">03</p>
+                                            <p className="header__mobile__text">Sign Out</p>
+                                        </Link>
+                                    </>
+                                )
+                            }
+                            
                         </nav>
                     </motion.header>
                 )
             }
             <header className="header">
-                <Link to="/" className="header__link">
-                    Leetcode Archives
-                </Link>
-                <Link to="/" className="header__logo">LEETLOG</Link>
-                <motion.img 
-                    whileHover={{scale: 1.2, transition: {duration: 0.5}}}
-                    onClick={()=>setIsMobileHeaderOpen(true)} 
-                    src={menu} 
-                    className="header__menu" 
-                    alt="Hamburger Menu" 
-                />
-                <Link to="/addNewLeetcode" className="header__link">
-                    Add new leetcode
-                </Link>
+                {
+                    (pathname === "/" || pathname === "/register") ? (
+                        <>
+                            <Link to="/" className="header__link">
+                                Login
+                            </Link>
+                            <Link to="/" className="header__logo">LEETLOG</Link>
+                            <motion.img 
+                                whileHover={{scale: 1.2, transition: {duration: 0.5}}}
+                                onClick={()=>setIsMobileHeaderOpen(true)} 
+                                src={menu} 
+                                className="header__menu" 
+                                alt="Hamburger Menu" 
+                            />
+                            <Link to="/register" className="header__link">
+                                Register
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/home" className="header__link">
+                                Leetcode Archives
+                            </Link>
+                            <Link to="/" className="header__logo">LEETLOG</Link>
+                            <motion.img 
+                                whileHover={{scale: 1.2, transition: {duration: 0.5}}}
+                                onClick={()=>setIsMobileHeaderOpen(true)} 
+                                src={menu} 
+                                className="header__menu" 
+                                alt="Hamburger Menu" 
+                            />
+                            <div className="header__container">
+                                <Link to="/addNewLeetcode" className="header__link">
+                                    Add new leetcode
+                                </Link>
+                                <Link onClick={()=> {
+                                                setIsMobileHeaderOpen(false);
+                                                handleSignout();
+                                                }}
+                                                to="/addNewLeetcode" 
+                                                className="header__link"
+                                >
+                                    Sign Out
+                                </Link>
+                            </div>
+                        </>
+                    )
+                }
+                
             </header>
         </>
         

@@ -1,8 +1,8 @@
 import {gql} from "@apollo/client";
 
 const getAllLeetcode = gql`
-    {
-        leetcodes{
+    query GetAllLeetcode($uid: ID!){
+        leetcodes(uid: $uid){
             id
             code
             question
@@ -12,8 +12,8 @@ const getAllLeetcode = gql`
     }
 `
 const addNewQuestionMutation = gql `
-    mutation AddBook($code: Int!, $question: String!, $duration: Int!, $solution: String!, $date: Float!, $difficulty: String!){
-        addLeetcode(code: $code, question: $question, duration: $duration, solution: $solution, date: $date, difficulty: $difficulty) {
+    mutation AddBook($uid: ID!,$code: Int!, $question: String!, $duration: Int!, $solution: String!, $date: Float!, $difficulty: String!){
+        addLeetcode(uid: $uid,code: $code, question: $question, duration: $duration, solution: $solution, date: $date, difficulty: $difficulty) {
             id,
             question
         }

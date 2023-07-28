@@ -16,7 +16,7 @@ const FormPage = () => {
     const [solution, setSolution] = useState();
     const [duration, setDuration] = useState();
     const [difficulty, setDifficulty] = useState();
-
+    const [uid, setUid] = useState("");
     // Success or Fail Status
     const [success, setSuccess] = useState("");
     const [formError, setFormError] = useState("");
@@ -32,26 +32,29 @@ const FormPage = () => {
     // GraphQL
     const [addLeetcode, {data, loading, error}] = useMutation(addNewQuestionMutation, {
         refetchQueries: [
-            {query: getAllLeetcode}
+            {
+                query: getAllLeetcode,
+                variables: {uid}
+            }
         ]
     });
 
     const navigate = useNavigate();
     const handleSubmit = (e) => {
+        console.log(uid)
         e.preventDefault();
         let timestamp = date.getTime();
         let newCode = Number(code);
         let newDuration = Number(duration);
-
         addLeetcode({
             variables: {
-                code: newCode, question, date: timestamp, solution, duration: newDuration, difficulty
+                uid,code: newCode, question, date: timestamp, solution, duration: newDuration, difficulty
             }
         }).then((response) => {
             clearInputValue();
             setSuccess("Successfully uploaded your question");
             setTimeout(() => {
-                navigate("/");
+                navigate("/home");
             }, 2500)
         }).catch((error) => {
             clearInputValue();
@@ -66,7 +69,7 @@ const FormPage = () => {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                 const uid = user.uid;
-                console.log("uid", uid)
+                setUid(uid);
                 } else {
                     navigate("/");
                 }

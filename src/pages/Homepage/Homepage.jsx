@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import {auth} from "../../firebase";
 import Hero from '../../components/Hero/Hero';
@@ -9,14 +9,18 @@ import { useNavigate } from 'react-router-dom';
 import "./Homepage.scss";
 
 const Homepage = () => {
-    const {loading, error, data} = useQuery(getAllLeetcode);
+    const [uid, setUid] = useState("");
+    const {loading, error, data} = useQuery(getAllLeetcode, {
+        variables: {uid: uid}
+    });
+
     const navigate = useNavigate();
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
-                console.log("uid", uid)
+                setUid(uid);
             } else {
                 navigate("/");
             }

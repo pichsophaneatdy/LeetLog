@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import ProtectedRoute from './utils/ProtectedRoute';
 import {ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client";
+import { useLocation } from 'react-router-dom';
 
 // Apollo Client
 const httpLink = createHttpLink({

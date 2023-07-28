@@ -68,5 +68,9 @@
             font-weight: 700;
         }
 
-    };
+    }
+    &__container {
+        display: flex;
+        gap: 2rem;
+    }
 }
