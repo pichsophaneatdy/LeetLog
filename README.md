@@ -41,6 +41,42 @@ Link to Backend Repository: ***https://github.com/pichsophaneatdy/Leetlog-Server
 </li>
 </ul>
 
+## Getting Started
+
+Make sure you start the backend server as well. The instructions can be found at: ***https://github.com/pichsophaneatdy/Leetlog-Server***
+.To set up and run LeetLog locally on your machine, follow the steps below:
+
+### Installation
+
+1. Clone this GitHub Repository to your local machine
+
+   ```
+   git clone https://github.com/pichsophaneatdy/LeetLog.git
+   ```
+
+2. Navigate to the project and install required dependencies
+
+   ```
+   cd leetlog
+   npm install
+   ```
+## Configuration
+
+1. Firebase Set Up
+   <ul>
+     <li>Create a Firebase project and set up Firebase Authentication to enable user authentication.</li>
+     <li>Obtain your Firebase configuration (API keys, authDomain, etc.).</li>
+     <li>Create a .env file in the root directory</li>
+     <li>Replace the environment variables using the env-example</li>
+   </ul>
+
+## Running the Application
+1. Start the development server
+
+   ```
+   npm start
+   ```
+   
 
 ## Check out the screenshots
 
