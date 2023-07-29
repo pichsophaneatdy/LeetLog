@@ -11,6 +11,17 @@ const getAllLeetcode = gql`
         }
     }
 `
+const getSingleLeetcode = gql`
+    query GetSingleLeetcode($id: ID!){
+        leetcode(id: $id){
+            code
+            question
+            difficulty
+            date
+            solution
+            duration
+    }
+}`
 const addNewQuestionMutation = gql `
     mutation AddBook($uid: ID!,$code: Int!, $question: String!, $duration: Int!, $solution: String!, $date: Float!, $difficulty: String!){
         addLeetcode(uid: $uid,code: $code, question: $question, duration: $duration, solution: $solution, date: $date, difficulty: $difficulty) {
@@ -19,4 +30,4 @@ const addNewQuestionMutation = gql `
         }
     } 
 `
-export {getAllLeetcode, addNewQuestionMutation};
+export {getAllLeetcode, addNewQuestionMutation, getSingleLeetcode};

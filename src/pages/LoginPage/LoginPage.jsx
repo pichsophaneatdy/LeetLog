@@ -9,6 +9,7 @@ const LoginPage = () => {
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
+    const [errMsg, setErrMsg] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,8 +21,13 @@ const LoginPage = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode, errorMessage)
+                setErrMsg(`${errorCode.toString()}: ${errMsg.toString()}`);
                 // Display error on the form and allow user to sign in again
+                setTimeout(() => {
+                    setErrMsg("");
+                    setEmail("");
+                    setPwd("");
+                }, 2500)
             });
         
     }
@@ -29,6 +35,7 @@ const LoginPage = () => {
         <div className="login">
             <h3 className="login__title">Login</h3>
             <form onSubmit={handleSubmit} className="login__form">
+                {errMsg && <p className="form__error">{errMsg}</p>}
                 <div className="form__control">
                     <label className="form__label">Email</label>
                     <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder='johndoe@gmail.com' className="form__input" />

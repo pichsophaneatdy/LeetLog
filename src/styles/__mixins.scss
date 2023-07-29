@@ -8,3 +8,15 @@
         @content;
     }
 }
+@mixin form-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    @include tablet{
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+    @include desktop {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}

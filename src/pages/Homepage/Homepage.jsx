@@ -7,11 +7,11 @@ import { useQuery } from '@apollo/client';
 import { getAllLeetcode } from '../../queries/queries';
 import { useNavigate } from 'react-router-dom';
 import "./Homepage.scss";
-
 const Homepage = () => {
     const [uid, setUid] = useState("");
     const {loading, error, data} = useQuery(getAllLeetcode, {
-        variables: {uid: uid}
+        variables: {uid: uid},
+        skip: !uid
     });
 
     const navigate = useNavigate();
@@ -34,7 +34,9 @@ const Homepage = () => {
                 {error && <p>Error...</p>}
                 {
                     data?.leetcodes?.map((question) => {
-                        return <LeetcodeCard key={question.id} card={question} />
+                        return (
+                                <LeetcodeCard key={question.id} card={question} />
+                        )
                     })
                 }
             </div>

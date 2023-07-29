@@ -70,7 +70,11 @@
 
     }
     &__container {
-        display: flex;
-        gap: 2rem;
+        display: none;
+        @include tablet{
+            display: flex;
+            gap: 2rem;
+        }
+        
     }
 }

@@ -113,7 +113,7 @@ const Header = ({isMobileHeaderOpen, setIsMobileHeaderOpen}) => {
                             <Link to="/home" className="header__link">
                                 Leetcode Archives
                             </Link>
-                            <Link to="/" className="header__logo">LEETLOG</Link>
+                            <Link to="/home" className="header__logo">LEETLOG</Link>
                             <motion.img 
                                 whileHover={{scale: 1.2, transition: {duration: 0.5}}}
                                 onClick={()=>setIsMobileHeaderOpen(true)} 

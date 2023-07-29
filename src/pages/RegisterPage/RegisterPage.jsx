@@ -9,7 +9,7 @@ const RegisterPage = () => {
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
-
+    const [errMsg, setErrMsg] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -23,13 +23,19 @@ const RegisterPage = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode, errorMessage);
+                setErrMsg(errorCode.toString(), errorMessage.toString());
+                setTimeout(() => {
+                    setErrMsg("");
+                    setEmail("");
+                    setPwd("");
+                }, 2500)
             })
     }
     return (
         <div className="register">
             <h3 className="register__title">Register</h3>
             <form onSubmit={handleSubmit} className="register__form">
+                {errMsg && <p className="form__error">{errMsg}</p>}
                 <div className="form__control">
                     <label className="form__label">Email</label>
                     <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder='johndoe@gmail.com' className="form__input" />

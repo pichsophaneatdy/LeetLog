@@ -2,11 +2,15 @@
 @use "../../styles/_variables" as *;
 
 .register {
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    @include form-padding;
     &__title {
         margin: 2rem 0;
     }
-    &__form {
-        
+}
+.register__form input {
+    @include desktop{
+        max-width: 400px;
     }
 }

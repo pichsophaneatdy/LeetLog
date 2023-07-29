@@ -1,7 +1,8 @@
 import React from 'react';
 import "./LeetcodeCard.scss";
+import { Link } from 'react-router-dom';
 const LeetcodeCard = ({card}) => {
-    const {code, question, date, difficulty} = card;
+    const {id,code, question, date, difficulty} = card;
     const newDate = new Date(date).toString().split(" ").slice(1,4).join("/");
     
     return (
@@ -13,7 +14,7 @@ const LeetcodeCard = ({card}) => {
                 <p className="card__subtitle">Date: {newDate}</p>
             </div>
             <div className="card__container">
-                <button className="card__detail">Learn more</button>
+                <Link to={`/leetcode/${id}`} className="card__detail">Learn more</Link>
             </div>
             
         </div>

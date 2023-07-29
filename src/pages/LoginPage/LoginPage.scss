@@ -1,5 +1,9 @@
+@use "../../styles/_mixins" as *;
+
 .login{
-    padding: 1rem;
+    @include form-padding;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     &__title {
         padding: 2rem 0;
     }

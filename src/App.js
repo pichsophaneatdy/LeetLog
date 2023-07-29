@@ -6,9 +6,8 @@ import FormPage from './pages/FormPage/FormPage';
 import Header from './components/Header/Header';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
-import ProtectedRoute from './utils/ProtectedRoute';
+import DetailPage from './pages/DetailPage/DetailPage';
 import {ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client";
-import { useLocation } from 'react-router-dom';
 
 // Apollo Client
 const httpLink = createHttpLink({
@@ -36,6 +35,10 @@ function App() {
             <Route 
               path="/addNewLeetcode"
               element={<FormPage />}
+            />
+            <Route
+              path="/leetcode/:id"
+              element={<DetailPage/>}
             />
           </Routes>
         </div>
