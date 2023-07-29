@@ -2,13 +2,13 @@ import {initializeApp} from "firebase/app";
 import {getAuth} from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD0R_8jWbT7HKPR-GJqZanP9xeFDe0Fpag",
-    authDomain: "leetlog-2023.firebaseapp.com",
-    projectId: "leetlog-2023",
-    storageBucket: "leetlog-2023.appspot.com",
-    messagingSenderId: "454596671782",
-    appId: "1:454596671782:web:7d2f50061a2093950ca9e7",
-    measurementId: "G-4W9LWKBCM9"
+    apiKey: process.env.REACT_APP_APIKEY,
+    authDomain: process.env.REACT_APP_AUTHDOMAIN ,
+    projectId: process.env.REACT_APP_PROJECTID ,
+    storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING,
+    appId: process.env.APPID,
+    measurementId: process.env.REACT_APP_MEASUREMENT
 }
 
 // Initialize Firebase
