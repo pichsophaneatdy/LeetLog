@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import {motion} from "framer-motion";
 import hljs from "highlight.js/lib/core";
 import 'highlight.js/styles/default.css';
+import DOMPurify from 'dompurify';
+
 // Config JavaScript
 import javascript from 'highlight.js/lib/languages/javascript';
 hljs.registerLanguage('javascript', javascript);
@@ -67,9 +69,12 @@ const DetailPage = () => {
                             <div className="detail__group2">
                                 <p className="detail__title">Solution</p>
                                 <pre>
-                                    <code className={`language-javascript`}>
-                                        {data.leetcode.solution}
-                                    </code> 
+                                <code
+                                    className={`language-javascript`}
+                                    dangerouslySetInnerHTML={{
+                                    __html: DOMPurify.sanitize(data?.leetcode?.solution),
+                                    }}
+                                />
                                 </pre>
                             </div>
                         </div>

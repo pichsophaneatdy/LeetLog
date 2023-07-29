@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {auth} from "../../firebase";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import "./RegisterPage.scss";
-
+import UserForm from '../../components/UserForm/UserForm';
 const RegisterPage = () => {
     const navigate = useNavigate();
 
@@ -32,23 +32,17 @@ const RegisterPage = () => {
             })
     }
     return (
-        <div className="register">
-            <h3 className="register__title">Register</h3>
-            <form onSubmit={handleSubmit} className="register__form">
-                {errMsg && <p className="form__error">{errMsg}</p>}
-                <div className="form__control">
-                    <label className="form__label">Email</label>
-                    <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder='johndoe@gmail.com' className="form__input" />
-                </div>
-                <div className="form__control">
-                    <label className="form__label">Password</label>
-                    <input value={pwd} onChange={(e)=>setPwd(e.target.value)} type="text" placeholder="123Hello!" className="form__input" />
-                </div>
-                <div className="form__btn-container">
-                    <button className="form__btn">Register</button>
-                </div>
-            </form>
-        </div>
+        <UserForm 
+            title="Welcome to LeetLog!" 
+            subtitle="We are excited to have you. Please enter your details" 
+            handleSubmit={handleSubmit}
+            errMsg={errMsg}
+            email={email}
+            setEmail={setEmail}
+            pwd={pwd}
+            setPwd={setPwd}
+            btn="Register"
+        />
     )
 }
 

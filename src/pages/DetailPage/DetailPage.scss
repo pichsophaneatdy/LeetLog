@@ -42,11 +42,13 @@
         justify-content: space-between;
     }
     &__group {
+        font-size: 0.9rem;
         @include tablet{
             width: 50%;
         }
     }
     &__group2 {
+        font-size: 0.9rem;
         @include tablet {
             width: 50%;
         }
