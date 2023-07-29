@@ -7,6 +7,8 @@ import { useQuery } from '@apollo/client';
 import { getAllLeetcode } from '../../queries/queries';
 import { useNavigate } from 'react-router-dom';
 import "./Homepage.scss";
+import Heatmap from '../../components/Heatmap/Heatmap';
+
 const Homepage = () => {
     const [uid, setUid] = useState("");
     const {loading, error, data} = useQuery(getAllLeetcode, {
@@ -29,7 +31,10 @@ const Homepage = () => {
     return (
         <div className="homepage">
             <Hero title="Welcome to LeetLog!" subtitle="Did you do a lot of leetcode questions? We will help you keeping track of it!" />
+            {data?.leetcodes && <Heatmap posts={data.leetcodes}/>}
+            <p className="homepage__title">Leetcode Archive</p>
             <div className="homepage__container">
+                
                 {loading && <p>Loading...</p>}
                 {error && <p>Error...</p>}
                 {
