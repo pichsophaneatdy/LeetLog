@@ -6,10 +6,10 @@
     background: linear-gradient(35deg, $orange, $pink);
     padding: 4rem 1rem;
     @include tablet{
-        padding: 6rem 7%;
+        padding: 3rem 7%;
     }
     @include desktop{
-        padding: 8rem 15%;
+        padding: 4rem 15%;
     }
     &__icon {
         width: 35px;

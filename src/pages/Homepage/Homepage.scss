@@ -16,4 +16,17 @@
             padding: 4rem 15%;
         }
     }
+    &__title {
+        padding: 0 1rem;
+        color: $pink;
+        font-weight: 600;
+        @include tablet{
+            padding: 0 7%;
+            font-size: 1.2rem;
+        }
+        @include desktop{
+            padding: 0 15%;
+            font-size: 1.4rem;
+        }
+    }
 }

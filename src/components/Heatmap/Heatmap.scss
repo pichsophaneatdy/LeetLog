@@ -1,0 +1,31 @@
+@use "../../styles/_mixins" as *;
+@use "../../styles/_variables" as *;
+
+.heatmap__container {
+    
+}
+.heatmap {
+    &__title {
+        margin: 2rem 0 1.5rem 0;
+        font-weight: 600;
+        color: $pink;
+        @include tablet{
+            font-size: 1.2rem;
+            margin: 2rem 0 2.5rem 0;
+        }
+        @include desktop{
+            font-size: 1.4rem;
+        }
+    }
+    &__container{
+        padding: 1rem;
+        // max-width: 500px;
+        @include tablet{
+            padding: 2rem 7%;
+        }
+        @include desktop {
+            padding: 2rem 15%;
+        }
+    }
+}
+
