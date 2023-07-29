@@ -1,13 +1,15 @@
 import './App.css';
 import { useState } from 'react';
 import {BrowserRouter, Routes, Route, Form} from "react-router-dom";
+import {ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client";
+// Pages
 import Homepage from './pages/Homepage/Homepage';
 import FormPage from './pages/FormPage/FormPage';
 import Header from './components/Header/Header';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import DetailPage from './pages/DetailPage/DetailPage';
-import {ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client";
+import ResetPwdPage from './pages/ResetPwdPage/ResetPwdPage';
 
 // Apollo Client
 const httpLink = createHttpLink({
@@ -27,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/register" element={<RegisterPage/>}/>
             <Route path="/" element={<LoginPage />} />
+            <Route path="/resetPwd" element={<ResetPwdPage />} />
             {/* Protected Route */}
             <Route 
               path="/home"

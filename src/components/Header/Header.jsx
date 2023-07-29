@@ -35,7 +35,7 @@ const Header = ({isMobileHeaderOpen, setIsMobileHeaderOpen}) => {
     return (
         <>
             {
-                isMobileHeaderOpen && (pathname === "/home" || pathname === "/addNewLeetcode") && (
+                isMobileHeaderOpen && (pathname === "/home" || pathname === "/addNewLeetcode" || pathname.startsWith("/leetcode/")) && (
                     <motion.header
                         initial={false}
                         animate={isMobileHeaderOpen ? "open" : "closed"}
@@ -72,7 +72,7 @@ const Header = ({isMobileHeaderOpen, setIsMobileHeaderOpen}) => {
                 )
             }
             {
-                (pathname === "/home" || pathname === "/addNewLeetcode") && (
+                (pathname === "/home" || pathname === "/addNewLeetcode" || pathname.startsWith("/leetcode/")) && (
                     <header className="header">
                         <Link to="/home" className="header__link">
                             Leetcode Archives
