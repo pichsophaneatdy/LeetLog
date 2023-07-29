@@ -3,6 +3,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from "../../firebase";
 import { useNavigate } from 'react-router-dom';
 import "./LoginPage.scss";
+import UserForm from '../../components/UserForm/UserForm';
+import logo from "../../assets/logo.png";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -21,7 +23,7 @@ const LoginPage = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                setErrMsg(`${errorCode.toString()}: ${errMsg.toString()}`);
+                setErrMsg(`${errorCode.toString()}: ${errorMessage.toString()}`);
                 // Display error on the form and allow user to sign in again
                 setTimeout(() => {
                     setErrMsg("");
@@ -32,23 +34,17 @@ const LoginPage = () => {
         
     }
     return (
-        <div className="login">
-            <h3 className="login__title">Login</h3>
-            <form onSubmit={handleSubmit} className="login__form">
-                {errMsg && <p className="form__error">{errMsg}</p>}
-                <div className="form__control">
-                    <label className="form__label">Email</label>
-                    <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder='johndoe@gmail.com' className="form__input" />
-                </div>
-                <div className="form__control">
-                    <label className="form__label">Password</label>
-                    <input value={pwd} onChange={(e)=>setPwd(e.target.value)} type="text" placeholder="123Hello!" className="form__input" />
-                </div>
-                <div className="form__btn-container">
-                    <button className="form__btn">Login</button>
-                </div>
-            </form>
-        </div>
+            <UserForm 
+                title="Welcome back to LeetLog!" 
+                subtitle="Welcome back! Please enter your details." 
+                handleSubmit={handleSubmit}
+                errMsg={errMsg}
+                email={email}
+                setEmail={setEmail}
+                pwd={pwd}
+                setPwd={setPwd}
+                btn="Login"
+            />
     )
 }
 
